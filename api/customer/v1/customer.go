@@ -1,14 +1,19 @@
-package model
+package v1
 
-import "demo/internal/model/entity"
+import (
+	"demo/internal/model/entity"
+	"github.com/gogf/gf/v2/frame/g"
+)
 
-type GetCustomerListInput struct{}
-
-type GetCustomerListOutput struct {
-	List []entity.Customers `json:"customer_list"`
+type GetListReq struct {
+	g.Meta `path:"/customer" method:"GET" tags:"Customer"`
+}
+type GetListRes struct {
+	List []entity.Customers `json:"list"`
 }
 
-type AddCustomerInput struct {
+type AddReq struct {
+	g.Meta       `path:"/customer" method:"POST" tags:"Customer"`
 	CustomerName string `json:"customerName" orm:"CustomerName" description:""` //
 	Company      string `json:"company"      orm:"Company"      description:""` //
 	Sex          string `json:"sex"          orm:"Sex"          description:""` //
@@ -17,26 +22,30 @@ type AddCustomerInput struct {
 	Address      string `json:"address"      orm:"Address"      description:""` //
 }
 
-type AddCustomerOutput struct {
-	CustomerID int `json:"customerID"   orm:"CustomerID"   description:""` //
+type AddRes struct {
+	CustomerID int `json:"/customerID"   orm:"CustomerID"   description:""` //
 }
 
-type UpdateCustomerInput struct {
+type UpdateReq struct {
+	g.Meta       `path:"/customer" method:"PUT" tags:"Customer"`
 	CustomerID   int    `json:"customerID"   orm:"CustomerID"   description:""` //
-	CustomerName string `json:"customerName" orm:"CustomerName" description:""`
-	Company      string `json:"company"      orm:"Company"      description:""`
+	CustomerName string `json:"customerName" orm:"CustomerName" description:""` //
+	Company      string `json:"company"      orm:"Company"      description:""` //
 	Sex          string `json:"sex"          orm:"Sex"          description:""` //
 	Age          int    `json:"age"          orm:"Age"          description:""` //
 	Telephone    string `json:"telephone"    orm:"Telephone"    description:""` //
 	Address      string `json:"address"      orm:"Address"      description:""` //
 }
 
-type UpdateCustomerOutput struct {
+type UpdateRes struct {
 	CustomerID int `json:"customerID"   orm:"CustomerID"   description:""`
 }
 
-type DeleteCustomerInput struct {
+type DeleteReq struct {
+	g.Meta     `path:"/customer" method:"DELETE" tags:"Customer"`
 	CustomerID int `json:"customerID"   orm:"CustomerID"   description:""`
 }
 
-type DeleteCustomerOutput struct{}
+type DeleteRes struct {
+	CustomerID int `json:"customerID"   orm:"CustomerID"   description:""`
+}

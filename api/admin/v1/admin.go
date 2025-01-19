@@ -9,9 +9,8 @@ type LoginReq struct {
 }
 
 type LoginRes struct {
-	Id       int    `json:"id"       orm:"id"       description:""` //
-	Name     string `json:"name"     orm:"name"     description:""` //
-	Password string `json:"password" orm:"password" description:""` //
+	Id   int    `json:"id"       orm:"id"       description:""` //
+	Name string `json:"name"     orm:"name"     description:""` //
 }
 
 type LogoutReq struct {

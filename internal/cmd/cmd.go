@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"context"
+	"demo/internal/controller/admin"
+	"demo/internal/service"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
@@ -16,8 +18,13 @@ var (
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			s := g.Server()
 			s.Group("/", func(group *ghttp.RouterGroup) {
-				group.Middleware(ghttp.MiddlewareHandlerResponse)
-				group.Bind()
+				group.Middleware(
+					ghttp.MiddlewareHandlerResponse,
+					service.Middleware().CORS,
+				)
+				group.Bind(
+					admin.Admin.Login,
+				)
 			})
 			s.Run()
 			return nil
